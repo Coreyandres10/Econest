@@ -1,2 +1,6 @@
 # Econest
-Econest is a financial management platform built on the MERN (MongoDB, Express.js, React, Node.js) stack, offering users powerful tools for budget planning and expense tracking.
+Econest is a financial management platform built on the MERN (MongoDB, Express.js, React, Node.js) stack, offering users powerful tools for budget planning and expense tracking. With secure email and password sign-up, users can effortlessly track all income and expenses by uploading a bank statement into the system and letting Econest do all the magic. Uploading these figures will allow for the user to budget goals across various categories such as groceries, entertainment, bills. 
+
+Utilizing React for the front-end, Econest will display charts and graphs to visualize users' spending habits, providing valuable insights into their financial landscape. The MongoDB database ensures efficient data storage and retrieval back-end, while Node.js and Express.js handle the server-side functionalities. The MERN stack will allow for a seamless and responsive user experience. 
+
+Further more to enhance financial awareness, Econest integrates a live API for stock updates, allowing users to stay informed about their investment portfolio. This dynamic feature provides real-time market data and insights, aligning with our commitment to offering a comprehensive financial management experience.
