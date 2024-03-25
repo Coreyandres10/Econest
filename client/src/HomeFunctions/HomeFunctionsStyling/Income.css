@@ -1,0 +1,56 @@
+.income-container {
+    padding: 20px;
+  }
+  
+  .income-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .income-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+  
+  .income-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .income-label {
+    margin-bottom: 5px;
+  }
+  
+  .income-input,
+  .income-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .income-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .income-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .edit-income-button {
+    margin-top: 20px;
+    background-color: #ffc107;
+    color: #333;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-income-button:hover {
+    background-color: #ffb400;
+  }

@@ -1,0 +1,83 @@
+.stocks-container {
+    padding: 20px;
+  }
+  
+  .stocks-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .stocks-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .stocks-label {
+    margin-right: 10px;
+  }
+  
+  .stocks-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .stocks-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .stocks-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .stocks-loading,
+  .stocks-error {
+    margin-top: 20px;
+  }
+  
+  .stocks-news-heading {
+    font-size: 20px;
+  }
+  
+  .stocks-news-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .stocks-news-item {
+    margin-top: 20px;
+  }
+  
+  .stocks-news-link {
+    display: flex;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .stocks-news-image {
+    width: 120px;
+    margin-right: 10px;
+  }
+  
+  .stocks-news-details {
+    flex: 1;
+  }
+  
+  .stocks-news-title {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .stocks-news-source,
+  .stocks-news-time {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  

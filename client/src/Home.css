@@ -1,0 +1,66 @@
+.home-container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: url('./Pictures/EconestBackground.png'); /* Replace 'your-background-image.jpg' with the path to your background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.company-logo {
+width: 250px; /* Adjust the width of the logo as needed */
+}
+  
+.home-header {
+  text-align: center;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.tab-btn {
+  background-color: #ffffff;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 100px; 
+}
+
+.tab-btn.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.tab-content {
+  min-height: 50vh;
+  background-color: rgba(255, 255, 255, 0.545); /* Semi-transparent white background */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(2, 0, 0, 0.1);
+}
+
+.welcome-box {
+  display: flex; /* Use flexbox to align items */
+  align-items: center; /* Center items vertically */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin-right: 10px; /* Add margin to separate avatar from text */
+}
