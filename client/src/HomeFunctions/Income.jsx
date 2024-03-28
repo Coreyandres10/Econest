@@ -29,7 +29,7 @@ function Income() {
   };
 
   const handleEditIncome = () => {
-    // Add functionality to handle editing income
+    // NEED TO ADD THE EDITING HERE -EMANUEL
     console.log('Editing income...');
   };
 
@@ -71,7 +71,6 @@ function Income() {
             <option value="">Select Category</option>
             <option value="Earned Income">Earned Income</option>
             <option value="Passive Income">Passive Income</option>
-            <option value="Retirement Income">Retirement Income</option>
           </select>
         </div>
         <button type="submit" className="income-button">Add Income</button>

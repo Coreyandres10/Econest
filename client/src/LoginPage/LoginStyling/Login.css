@@ -7,7 +7,7 @@
   }
   
   .login-background {
-    background-image: url('./Pictures/Econest.png');
+    background-image: url('/Users/emanuel/Econest/client/src/Pictures/Econest.png');
     background-size: cover;
     background-position: center;
     position: absolute;

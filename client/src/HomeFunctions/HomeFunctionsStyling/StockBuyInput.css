@@ -1,0 +1,41 @@
+.stock-buy-input {
+  padding: 20px;
+}
+
+.input-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-label {
+  margin-bottom: 5px;
+}
+
+.input-text {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-button:hover {
+  background-color: #0056b3;
+}

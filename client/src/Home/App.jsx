@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Signup from './Signup'
-import Login from './Login'
-import Home from './Home'
+import Signup from '/Users/emanuel/Econest/client/src/LoginPage/Signup.jsx'
+import Login from '/Users/emanuel/Econest/client/src/LoginPage/Login.jsx'
+import Home from '/Users/emanuel/Econest/client/src/Home/Home.jsx'
 
 function App() {
 

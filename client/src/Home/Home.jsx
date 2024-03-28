@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Dashboard from './HomeFunctions/Dashboard';
-import Income from './HomeFunctions/Income';
-import Expenses from './HomeFunctions/Expenses';
-import Stocks from './HomeFunctions/Stocks';
-import CSV from './HomeFunctions/CSV'; // Import the component for CSV upload
+import Dashboard from '../HomeFunctions/Dashboard';
+import Income from '../HomeFunctions/Income';
+import Expenses from '../HomeFunctions/Expenses';
+import StocksMain from '../HomeFunctions/StocksMain'; 
+import CSV from '../HomeFunctions/CSV';
 import './Home.css';
-import CompanyLogo from './Pictures/EconestPng.png';
-import AvatarIcon from './Pictures/Avatar.jpeg'; // Import the avatar picture
+import CompanyLogo from '/Users/emanuel/Econest/client/src/Pictures/EconestPng.png';
+import AvatarIcon from '/Users/emanuel/Econest/client/src/Pictures/Avatar.jpeg'; 
 
 function Home() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -45,12 +45,11 @@ function Home() {
           Expenses
         </button>
         <button
-          className={activeTab === 'stocks' ? 'tab-btn active' : 'tab-btn'}
-          onClick={() => changeTab('stocks')}
+          className={activeTab === 'stocksMain' ? 'tab-btn active' : 'tab-btn'}
+          onClick={() => changeTab('stocksMain')}
         >
-          Stock News
+          Stocks
         </button>
-        {/* Add the button for the .csv upload tab */}
         <button
           className={activeTab === 'csvUpload' ? 'tab-btn active' : 'tab-btn'}
           onClick={() => changeTab('csvUpload')}
@@ -60,12 +59,10 @@ function Home() {
       </div>
 
       <div className="tab-content">
-        {/* Render content based on activeTab */}
         {activeTab === 'dashboard' && <Dashboard />}
         {activeTab === 'income' && <Income />}
         {activeTab === 'expenses' && <Expenses />}
-        {activeTab === 'stocks' && <Stocks />}
-        {/* Add the content for the .csv upload tab */}
+        {activeTab === 'stocksMain' && <StocksMain />}
         {activeTab === 'csvUpload' && <CSV />}
       </div>
     </div>

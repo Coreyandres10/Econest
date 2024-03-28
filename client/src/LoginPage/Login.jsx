@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import './Login.css'; 
+import '/Users/emanuel/Econest/client/src/LoginPage/LoginStyling/Login.css'; 
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -20,7 +20,6 @@ function Login() {
         }
       };
 
-    // Otherwise, render the login form
     return (
         <div className="login-container">
             <div className="login-background"></div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './HomeFunctionsStyling/Expenses.css'; // Import CSS file for styling
+import './HomeFunctionsStyling/Expenses.css';
 
 function Expenses() {
   const [amount, setAmount] = useState('');
@@ -29,7 +29,7 @@ function Expenses() {
   };
 
   const handleEditExpenses = () => {
-    // Add functionality to handle editing expenses
+    // NEED TO ADD THE EDITING HERE -EMANUEL
     console.log('Editing expenses...');
   };
 
@@ -70,7 +70,6 @@ function Expenses() {
           >
             <option value="">Select Category</option>
             <option value="Fixed Expenses">Fixed Expenses</option>
-            <option value="Variable Expenses">Variable Expenses</option>
             <option value="Discretionary Expenses">Discretionary Expenses</option>
           </select>
         </div>

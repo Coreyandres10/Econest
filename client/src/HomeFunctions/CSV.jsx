@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './HomeFunctionsStyling/CSV.css'; // Import CSS file for styling
+import './HomeFunctionsStyling/CSV.css'; 
 
 function CSV() {
   const [csvFile, setCSVFile] = useState(null);
@@ -11,10 +11,9 @@ function CSV() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here, you can handle the submission of the CSV file, such as sending it to the server or processing it.
+    
     if (csvFile) {
       console.log('CSV file:', csvFile);
-      // You can perform further actions here, such as sending the file to the server for processing.
     }
   };
 

@@ -1,0 +1,62 @@
+ /* MarketTrends.css */
+
+.market-trends-container {
+    margin-top: 20px;
+  }
+  
+  .market-trends-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .market-trends-form {
+    margin-bottom: 20px;
+  }
+  
+  .market-trends-label {
+    font-weight: bold;
+  }
+  
+  .market-trends-input {
+    width: 200px;
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  .market-trends-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .market-trends-loading {
+    font-style: italic;
+    color: #888;
+  }
+  
+  .market-trends-error {
+    color: #ff0000;
+  }
+  
+  .market-trends-trend-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .market-trends-trend-item {
+    margin-bottom: 20px;
+  }
+  
+  .market-trends-trend-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .market-trends-trend-description {
+    font-size: 14px;
+    color: #666;
+  }
+  

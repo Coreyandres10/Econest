@@ -2,14 +2,14 @@
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: url('./Pictures/EconestBackground.png'); /* Replace 'your-background-image.jpg' with the path to your background image */
+  background-image: url('/Users/emanuel/Econest/client/src/Pictures/EconestBackground.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .company-logo {
-width: 250px; /* Adjust the width of the logo as needed */
+width: 250px; 
 }
   
 .home-header {
@@ -40,15 +40,15 @@ width: 250px; /* Adjust the width of the logo as needed */
 
 .tab-content {
   min-height: 50vh;
-  background-color: rgba(255, 255, 255, 0.545); /* Semi-transparent white background */
+  background-color: rgba(255, 255, 255, 0.545); 
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(2, 0, 0, 0.1);
 }
 
 .welcome-box {
-  display: flex; /* Use flexbox to align items */
-  align-items: center; /* Center items vertically */
+  display: flex; 
+  align-items: center; 
   position: absolute;
   top: 20px;
   left: 20px;
@@ -62,5 +62,5 @@ width: 250px; /* Adjust the width of the logo as needed */
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  margin-right: 10px; /* Add margin to separate avatar from text */
+  margin-right: 10px; 
 }
