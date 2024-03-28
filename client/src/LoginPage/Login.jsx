@@ -12,13 +12,13 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:3001/register', {email, password});
-          console.log(response);
-          navigate("/home");
+            const response = await axios.post('http://localhost:3001/login', { email, password });
+            console.log(response);
+            navigate("/home");
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
-      };
+    };
 
     return (
         <div className="login-container">
