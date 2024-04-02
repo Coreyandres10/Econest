@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
 import './HomeFunctionsStyling/CSV.css'; 
-
+import axios from 'axios';
 function CSV() {
   const [csvFile, setCSVFile] = useState(null);
 
-  const handleFileChange = (e) => {
+  const handleFileChange =async (e) => {
     const file = e.target.files[0];
     setCSVFile(file);
+ 
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async(e) => {
     e.preventDefault();
-    
+
     if (csvFile) {
+      let formdata=new FormData()
+      formdata.append('file',csvFile)
+      let response=await axios.post(`http://localhost:3001/uploadcsv`,formdata)
+     if(response.status==200){
+      console.log(response.data.message)
+     }
+
       console.log('CSV file:', csvFile);
     }
   };

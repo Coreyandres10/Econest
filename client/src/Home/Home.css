@@ -2,7 +2,7 @@
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: url('/Users/emanuel/Econest/client/src/Pictures/EconestBackground.png'); 
+  background-image: url('../Pictures/EconestBackground.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -52,7 +52,7 @@ width: 250px;
   position: absolute;
   top: 20px;
   left: 20px;
-  background-color: #94cbabc3;
+  background-color: #ffffff;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

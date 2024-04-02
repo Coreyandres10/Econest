@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import '/Users/emanuel/Econest/client/src/LoginPage/LoginStyling/Login.css'; 
+import './LoginStyling/Login.css';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -12,13 +12,13 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3001/login', { email, password });
-            console.log(response);
-            navigate("/home");
+          const response = await axios.post('http://localhost:3001/login', {email, password});
+          console.log(response);
+          navigate("/home");
         } catch (error) {
-            console.error(error);
+          console.error(error);
         }
-    };
+      };
 
     return (
         <div className="login-container">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '/Users/emanuel/Econest/client/src/HomeFunctions/HomeFunctionsStyling/Stocks.css';
+import '../HomeFunctionsStyling/Stocks.css';
 
 function Stocks() {
   const [stockSymbol, setStockSymbol] = useState('');

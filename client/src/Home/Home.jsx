@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Dashboard from '../HomeFunctions/Dashboard';
 import Income from '../HomeFunctions/Income';
 import Expenses from '../HomeFunctions/Expenses';
-import StocksMain from '../HomeFunctions/StocksMain'; 
-import CSV from '../HomeFunctions/CSV';
+import StocksMain from '../HomeFunctions/StocksMain';
+import CSV from '../HomeFunctions/CSV'; 
 import './Home.css';
-import CompanyLogo from '/Users/emanuel/Econest/client/src/Pictures/EconestPng.png';
-import AvatarIcon from '/Users/emanuel/Econest/client/src/Pictures/Avatar.jpeg'; 
+import CompanyLogo from '../Pictures/EconestPng.png';
+import AvatarIcon from '../Pictures/Avatar.jpeg'; 
 
 function Home() {
   const [activeTab, setActiveTab] = useState('dashboard');

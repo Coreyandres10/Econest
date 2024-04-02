@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './HomeFunctionsStyling/Expenses.css';
-
+import './HomeFunctionsStyling/Expenses.css'; 
+import axios from 'axios';
 function Expenses() {
   const [amount, setAmount] = useState('');
   const [source, setSource] = useState('');
@@ -18,18 +18,22 @@ function Expenses() {
     setCategory(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Amount:', amount);
     console.log('Source:', source);
     console.log('Category:', category);
-    setAmount('');
-    setSource('');
-    setCategory('');
+let response=await axios.post(`http://localhost:3001/insert-expense`,{amount,category,source})
+if(response.status==200){
+  setAmount('');
+  setSource('');
+  setCategory('');
+  alert("Expense added")
+}
+ 
   };
 
   const handleEditExpenses = () => {
-    // NEED TO ADD THE EDITING HERE -EMANUEL
     console.log('Editing expenses...');
   };
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './HomeFunctionsStyling/Income.css';
-
+import axios from 'axios';
 function Income() {
   const [amount, setAmount] = useState('');
   const [source, setSource] = useState('');
@@ -18,19 +18,25 @@ function Income() {
     setCategory(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Amount:', amount);
     console.log('Source:', source);
     console.log('Category:', category);
-    setAmount('');
-    setSource('');
-    setCategory('');
+    let response=await axios.post(`http://localhost:3001/insert-income`,{amount,category,source})
+if(response.status==200){
+  setAmount('');
+  setSource('');
+  setCategory('');
+  alert("Income added")
+}
+  
   };
 
-  const handleEditIncome = () => {
-    // NEED TO ADD THE EDITING HERE -EMANUEL
-    console.log('Editing income...');
+  const handleEditIncome = async() => {
+    
+
+console.log('Editing income...');
   };
 
   return (

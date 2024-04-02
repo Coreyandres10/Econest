@@ -7,7 +7,7 @@
   }
   
   .signup-background {
-    background-image: url('/Users/emanuel/Econest/client/src/Pictures/Econest.png');
+    background-image: url('/Users/coreycevallos/Desktop/Econest-main/Econest-main/client/src/Pictures/Econest.png');
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -15,15 +15,15 @@
     bottom: 0;
     left: 0;
     right: 0;
-    filter: brightness(0.7); /* Adjust brightness for better text readability */
+    filter: brightness(0.7); 
   }
   
   .signup-content {
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.9); 
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
   }
   
   .signup-title {

@@ -1,9 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path=require('path')
+const fs=require('fs')
+const csvmulter=require('./util/csv_handler')
+const expensemodel=require('./models/Expense')
 const EconestModel = require("./models/Econest");
-
+const incomemodel=require('./models/Income')
+const csv=require('csvtojson')
 const app = express();
+const transactionmodel=require('./models/Transaction')
 app.use(express.json());
 app.use(cors());
 
@@ -34,6 +40,116 @@ app.post('/register', (req, res) => {
         .then(customers => res.status(201).json(customers))
         .catch(err => res.status(500).json({ status: "error", message: err.message }));
 });
+app.post('/uploadcsv', csvmulter.single("file"), async (req, res) => {
+    try {
+        const dirpath = path.join(__dirname, 'public', 'csv'); 
+
+      
+        if (!fs.existsSync(dirpath)) {
+            fs.mkdirSync(dirpath, { recursive: true });
+        }
+
+        const csvData = req.file.buffer.toString(); 
+        const destinationFilePath = path.join(dirpath, req.file.originalname);
+
+        fs.writeFileSync(destinationFilePath, csvData);
+csv().fromFile(destinationFilePath).then(async(response)=>{
+  response.map(async(val,i)=>{
+    const transactionDetail = val['Transaction Detail'];
+    const date=val.Date
+    const amount=val.Amount;
+    const balance=val.Balance;
+    const reoccuring=val.Reoccuring
+    const type=val.type
+if(transactionDetail && date && amount && balance && reoccuring && type){
+    console.log(type)
+    console.log(balance)
+    console.log(amount)
+await transactionmodel.create({
+    Date:date,
+    Transaction_Detail:transactionDetail,
+    Amount:amount,
+    Balance:balance,
+    Reoccuring:reoccuring,
+    type:type
+})
+}
+  })
+  
+})
+      return  res.status(200).json({
+            message: "File uploaded successfully"
+        });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({
+            error: "Server error. Please try again later."
+        });
+    }
+});
+
+app.get('/get-transaction',async(req,res)=>{
+    try{
+let response=await transactionmodel.find({})
+return res.status(200).json({
+    response
+})
+
+    }catch(error){
+        res.status(500).json({
+            error: "Server error. Please try again later."
+        });
+    }
+})
+
+app.post('/insert-expense',async(req,res)=>{
+
+    try{
+let {amount,source,category}=req.body;
+await expensemodel.create({
+    amount,
+    category,
+    source
+})
+return res.status(200).json({
+    message:"sucess"
+})
+    }catch(e){
+        console.log(e.message)
+        return res.status(40).json(
+          {
+            error:"Server error please try later"
+          }
+        )
+    }
+})
+
+
+
+
+app.post('/insert-income',async(req,res)=>{
+console.log("HI")
+    try{
+let {amount,source,category}=req.body;
+console.log(amount)
+await incomemodel.create({
+    amount,
+    category,
+    source
+})
+return res.status(200).json({
+    message:"sucess"
+})
+    }catch(e){
+        console.log(e.message)
+        return res.status(40).json(
+          {
+            error:"Server error please try later"
+          }
+        )
+    }
+})
+
 
 app.use((err, req, res, next) => {
     console.error("Server error:", err);
