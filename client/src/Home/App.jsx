@@ -4,7 +4,7 @@ import Signup from '../LoginPage/Signup'
 import Login from '../LoginPage/Login'
 import Home from './Home'
 
-function App() {
+function  App() {
 
   return (
     <BrowserRouter>

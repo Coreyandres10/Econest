@@ -8,6 +8,7 @@ const expensemodel=require('./models/Expense')
 const EconestModel = require("./models/Econest");
 const incomemodel=require('./models/Income')
 const csv=require('csvtojson')
+const stockmodel=require('./models/stock')
 const app = express();
 const transactionmodel=require('./models/Transaction')
 app.use(express.json());
@@ -102,14 +103,37 @@ return res.status(200).json({
     }
 })
 
+app.post('/insert-stock',async(req,res)=>{
+    let { stock_symbol,buy_price,shares}=req.body;
+    try{
+        let response=await stockmodel.create({
+stock_symbol,
+buy_price,
+shares
+
+        })
+        return res.status(200).json({
+            response
+        })
+    }catch(e){
+        console.log(e.message)
+        return res.status(40).json(
+          {
+            error:"Server error please try later"
+          }
+        )
+    }
+})
+
+
 app.post('/insert-expense',async(req,res)=>{
 
     try{
 let {amount,source,category}=req.body;
-await expensemodel.create({
-    amount,
-    category,
-    source
+await transactionmodel.create({
+  type:"Discretionary",
+  Amount:amount,
+  Transaction_Detail:source+' '+category,
 })
 return res.status(200).json({
     message:"sucess"
@@ -131,12 +155,11 @@ app.post('/insert-income',async(req,res)=>{
 console.log("HI")
     try{
 let {amount,source,category}=req.body;
-console.log(amount)
-await incomemodel.create({
-    amount,
-    category,
-    source
-})
+await transactionmodel.create({
+    type:"Earned",
+    Amount:amount,
+    Transaction_Detail:source+' '+category,
+  })
 return res.status(200).json({
     message:"sucess"
 })

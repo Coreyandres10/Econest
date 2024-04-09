@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../HomeFunctionsStyling/StockBuyInput.css';
-
+import axios from 'axios'
 function StockBuyInput() {
   const [stockSymbol, setStockSymbol] = useState('');
   const [buyPrice, setBuyPrice] = useState('');
@@ -18,11 +18,18 @@ function StockBuyInput() {
     setShares(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Stock Symbol:', stockSymbol);
-    console.log('Buy Price:', buyPrice);
-    console.log('Shares:', shares);
+    let response=await axios.post(`http://localhost:3001/insert-stock`,{stock_symbol:stockSymbol,buy_price:buyPrice,shares:shares})
+if(response.status==200){
+  alert("Sucessfully inserted")
+setStockSymbol("")
+setBuyPrice("")
+setShares("")
+}
+if(response.status!==200){
+  alert("Server error please try again")
+}
   };
 
   return (
@@ -54,7 +61,7 @@ function StockBuyInput() {
         <div className="input-group"> 
           <label htmlFor="shares" className="input-label">Shares:</label> 
           <input
-            type="number"
+            type="text"
             id="shares"
             value={shares}
             onChange={handleSharesChange}
