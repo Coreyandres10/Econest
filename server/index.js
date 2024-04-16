@@ -125,15 +125,14 @@ shares
     }
 })
 
-
 app.post('/insert-expense',async(req,res)=>{
 
     try{
 let {amount,source,category}=req.body;
 await transactionmodel.create({
-  type:"Discretionary",
+  type:category,
   Amount:amount,
-  Transaction_Detail:source+' '+category,
+  Transaction_Detail:source+' ',
 })
 return res.status(200).json({
     message:"sucess"
@@ -151,14 +150,15 @@ return res.status(200).json({
 
 
 
+
 app.post('/insert-income',async(req,res)=>{
 console.log("HI")
     try{
 let {amount,source,category}=req.body;
 await transactionmodel.create({
-    type:"Earned",
+    type:category,
     Amount:amount,
-    Transaction_Detail:source+' '+category,
+    Transaction_Detail:source+' ',
   })
 return res.status(200).json({
     message:"sucess"
