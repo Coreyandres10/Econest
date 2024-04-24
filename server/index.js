@@ -278,18 +278,18 @@ app.delete('/delete-stock/:id', async (req, res) => {
 
 app.post('/insert-stock-close-price', async (req, res) => {
     const { stock_symbol, buy_price, previousClose, date } = req.body;
-    
     try {
+      console.log("Received request to insert stock close price:", req.body);
       const response = await stockClosePriceModel.create({
         stock_symbol,
         buy_price,
         previousClose,
         date
       });
-      
+      console.log("Inserted stock close price successfully:", response);
       return res.status(200).json({ response });
     } catch (error) {
-      console.error(error.message);
+      console.error("Error inserting stock close price:", error); // Log error
       return res.status(500).json({ error: 'Server error. Please try again later.' });
     }
   });

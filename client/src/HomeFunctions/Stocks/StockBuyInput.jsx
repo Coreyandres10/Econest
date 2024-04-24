@@ -122,6 +122,7 @@ function StockBuyInput() {
 
   const insertStockClosePrice = async (data) => {
     try {
+      console.log("Inserting stock close price:", data); // Add this log
       const { stock_symbol, buy_price, previousClose, date } = data;
       const response = await axios.post('http://localhost:3001/insert-stock-close-price', {
         stock_symbol,
@@ -129,13 +130,13 @@ function StockBuyInput() {
         previousClose,
         date
       });
+      console.log("Insert stock close price response:", response); // Add this log
       return response.data;
     } catch (error) {
       console.error("Error inserting stock close price:", error);
       throw error;
     }
   };
-  
 
   return (
     <div className="stocks-container">
@@ -166,7 +167,11 @@ function StockBuyInput() {
                   <td>
                     <button onClick={() => handleEditStock(stock)}>Edit</button>
                     <button onClick={() => handleDeleteStock(stock._id)}>Delete</button>
-                    <button onClick={() => insertStockClosePrice({ stock_symbol: stock.stock_symbol, buy_price: stock.buy_price, previousClose: stock.previous_close, date: new Date() })}>Capture</button>
+                    <button onClick={() => {
+                      console.log("Capture button clicked"); // Add this log
+                      insertStockClosePrice({ stock_symbol: stock.stock_symbol, buy_price: stock.buy_price, previousClose: stock.previous_close, date: new Date() });
+                    }}>Capture
+                    </button>
                   </td>
                 </tr>
               ))}
