@@ -1,24 +1,38 @@
 .expenses-container {
-    padding: 20px;
-  }
-  
-.expenses-heading {
-  font-size: 24px;
-  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.expense-table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.expense-table th,
+.expense-table td {
+  border: 1px solid #ddd; 
+  padding: 8px; 
+  text-align: left;
+}
+
+.expense-table th {
+  background-color: #f2f2f2; /
+}
+
+.expense-controls {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
 }
 
 .expenses-form {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
 }
 
 .expenses-form-group {
   margin-bottom: 15px;
-}
-
-.expenses-label {
-  margin-bottom: 5px;
 }
 
 .expenses-input,
@@ -39,18 +53,4 @@
 
 .expenses-button:hover {
   background-color: #0056b3;
-}
-
-.edit-expenses-button {
-  margin-top: 20px;
-  background-color: #ffc107;
-  color: #333;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.edit-expenses-button:hover {
-  background-color: #ffb400;
 }

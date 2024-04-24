@@ -1,0 +1,15 @@
+.dashboard-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 100px;
+  background-color: #ad393900;
+}
+
+.chart-heading {
+  text-align: center;
+  margin-top: -85px; 
+}
+
+
+
+

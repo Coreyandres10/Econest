@@ -13,7 +13,7 @@ const transactionSchema=mongoose.Schema({
         type:Number
     },
     Balance:{
-  type:Number
+        type:Number
     },
     Reoccuring:{
         type:String

@@ -1,41 +1,55 @@
-.stock-buy-input {
-    padding: 20px;
-  }
-  
-  .input-heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .input-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  .input-label {
-    margin-bottom: 5px;
-  }
-  
-  .input-text {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .input-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .input-button:hover {
-    background-color: #0056b3;
-  }
+.stocks-container {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.stock-table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+.stock-table th,
+.stock-table td {
+  border: 1px solid #ddd; 
+  padding: 12px; 
+  text-align: left;
+}
+
+.stock-table th {
+  background-color: #f2f2f2; /
+}
+
+.stock-controls {
+  width: 70%;
+  display: flex;
+  align-items: center; 
+}
+
+.stocks-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.stocks-form-group {
+  margin-bottom: 15px;
+}
+
+.stocks-input,
+.stocks-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.stocks-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.stocks-button:hover {
+  background-color: #0056b3;
+}
