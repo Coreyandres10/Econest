@@ -4,6 +4,7 @@ import { Line } from 'react-chartjs-2';
 
 function DashboardLineChart() {
   const [stockData, setStockData] = useState([]);
+  const [selectedStock, setSelectedStock] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -23,16 +24,42 @@ function DashboardLineChart() {
     console.log("Stock Data:", stockData);
   }, [stockData]);
 
-  // Transform the data for Chart.js
-  const stockLabels = stockData.map(entry => entry.buy_date);
-  const stockPrices = stockData.map(entry => entry.previousClose);
+  const calculatePortfolioValue = () => {
+    // Initialize portfolio value array with zeros
+    const portfolioValue = new Array(stockData.length).fill(0);
+
+    // Loop through each stock data entry
+    stockData.forEach((entry, index) => {
+      // Calculate the value of the stock based on user's buy price and shares
+      const stockValue = entry.previousClose * entry.shares;
+
+      // Update the portfolio value array with the stock value
+      portfolioValue[index] += stockValue;
+    });
+
+    return portfolioValue;
+  };
+
+  const handleStockChange = (event) => {
+    setSelectedStock(event.target.value);
+  };
+
+  // Filter stock data based on selected stock
+  const filteredStockData = selectedStock ? stockData.filter(entry => entry.stock_symbol === selectedStock) : stockData;
+
+  // Transform the filtered data for Chart.js
+  const stockLabels = filteredStockData.map(entry => {
+    const date = new Date(entry.buy_date);
+    return date.toLocaleDateString('en-US'); // Format date as YYYY-MM-DD
+  });
+  const portfolioValue = calculatePortfolioValue();
 
   const data = {
     labels: stockLabels,
     datasets: [
       {
-        label: 'Stock Close Prices',
-        data: stockPrices,
+        label: 'Portfolio Value',
+        data: portfolioValue,
         fill: false,
         borderColor: 'rgba(75, 192, 192, 0.6)',
         tension: 0.1
@@ -42,7 +69,14 @@ function DashboardLineChart() {
 
   return (
     <div>
-      <h2 className="chart-heading">Stock Close Prices Over Time</h2>
+      <h2 className="chart-heading">Portfolio Value Over Time</h2>
+      <select value={selectedStock} onChange={handleStockChange}>
+        <option value="">Select a stock</option>
+        {/* Render options based on unique stock symbols */}
+        {Array.from(new Set(stockData.map(entry => entry.stock_symbol))).map(stockSymbol => (
+          <option key={stockSymbol} value={stockSymbol}>{stockSymbol}</option>
+        ))}
+      </select>
       <Line data={data} />
     </div>
   );
