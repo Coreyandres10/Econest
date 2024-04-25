@@ -96,7 +96,7 @@ await transactionmodel.create({
 });
 
 //-----------------------------------------------------------------------------
-//GET TRANSACTION / GET STOCKS
+//GET DATA
 
 app.get('/get-transaction',async(req,res)=>{
     try{
@@ -125,6 +125,17 @@ return res.status(200).json({
         });
     }
 })
+
+app.get('/get-stock-close-prices', async (req, res) => {
+    try {
+      // Assuming stockClosePriceModel is your Mongoose model for stock close prices
+      const stockClosePrices = await stockClosePriceModel.find();
+      return res.status(200).json(stockClosePrices);
+    } catch (error) {
+      console.error("Error fetching stock close prices:", error); // Log error
+      return res.status(500).json({ error: 'Server error. Please try again later.' });
+    }
+  });
 
 //-----------------------------------------------------------------------------
 //INCOME
@@ -229,11 +240,12 @@ app.delete('/delete-expense/:id', async (req, res) => {
 //STOCK
 
 app.post('/insert-stock',async(req,res)=>{
-    let { stock_symbol,buy_price,shares}=req.body;
+    let { stock_symbol,buy_price, buy_date, shares}=req.body;
     try{
         let response=await stockmodel.create({
 stock_symbol,
 buy_price,
+buy_date,
 shares
 
         })
@@ -250,19 +262,28 @@ shares
     }
 })
 
-app.put('/update-expense/:id', async (req, res) => {
+app.put('/update-stock/:id', async (req, res) => {
     const { id } = req.params;
-    const { stock_symbol, buy_price, shares } = req.body;
-    const stock = await stockmodel.findById(id);
+    const { stock_symbol, buy_price, buy_date, shares} = req.body; // Include 'shares' in destructuring
 
-    stock.stock_symbol = stock_symbol 
-    stock.buy_price = buy_price
-    stock.shares = shares
+    try {
+        const stock = await stockmodel.findById(id);
 
-    await stock.save();
+        // Update stock data
+        stock.stock_symbol = stock_symbol;
+        stock.buy_price = buy_price;
+        stock.buy_date = buy_date;
+        stock.shares = shares; // Update shares
 
-    return res.status(200).json({ message: 'Stock updated successfully' });
+        await stock.save();
+
+        return res.status(200).json({ message: 'Stock updated successfully' });
+    } catch (error) {
+        console.error('Error updating stock:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
 });
+
 
 
 app.delete('/delete-stock/:id', async (req, res) => {
@@ -277,14 +298,15 @@ app.delete('/delete-stock/:id', async (req, res) => {
 });
 
 app.post('/insert-stock-close-price', async (req, res) => {
-    const { stock_symbol, buy_price, previousClose, date } = req.body;
+    const { stock_symbol, buy_price, buy_date, shares, previousClose} = req.body;
     try {
       console.log("Received request to insert stock close price:", req.body);
       const response = await stockClosePriceModel.create({
         stock_symbol,
         buy_price,
+        buy_date,
+        shares,
         previousClose,
-        date
       });
       console.log("Inserted stock close price successfully:", response);
       return res.status(200).json({ response });

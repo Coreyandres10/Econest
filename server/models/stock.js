@@ -9,8 +9,12 @@ const stockSchema=mongoose.Schema({
         type:Number,
         required:true
     },
+    buy_date:{
+        type:Date,
+        required:true
+    },
     shares:{
-        type:String,
+        type:Number,
         required:true
     }
 })

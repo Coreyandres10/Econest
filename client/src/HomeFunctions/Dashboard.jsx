@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import CombinedPieChart from './CombinedPieChart';
+import CombinedPieChart from './DashboardPie';
+import CombinedLineChart from './DashboardLine';
 import './HomeFunctionsStyling/Dashboard.css'
 
 function Dashboard() {
@@ -30,6 +31,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <CombinedPieChart expense={expense} income={income} style={{ width: '400px', height: '400px' }} />
+      <CombinedLineChart />
     </div>
   );
 }

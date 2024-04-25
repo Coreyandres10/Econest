@@ -5,6 +5,7 @@ import '../HomeFunctionsStyling/StockBuyInput.css';
 function StockBuyInput() {
   const [stockSymbol, setStockSymbol] = useState('');
   const [buyPrice, setBuyPrice] = useState('');
+  const [buyDate, setBuyDate] = useState(''); // New state for Buy Date
   const [shares, setShares] = useState('');
   const [stocks, setStocks] = useState([]);
   const [editingStockId, setEditingStockId] = useState(null);
@@ -61,6 +62,10 @@ function StockBuyInput() {
     setBuyPrice(e.target.value);
   };
 
+  const handleBuyDateChange = (e) => { // New event handler for Buy Date
+    setBuyDate(e.target.value);
+  };
+
   const handleSharesChange = (e) => {
     setShares(e.target.value);
   };
@@ -70,23 +75,30 @@ function StockBuyInput() {
     console.log("Submitting form...");
     console.log("Stock Symbol:", stockSymbol);
     console.log("Buy Price:", buyPrice);
+    console.log("Buy Date:", buyDate); // Log Buy Date
     console.log("Shares:", shares);
+    
+    // Format the buyDate value to "yyyy-MM-dd" format
+    const formattedBuyDate = new Date(buyDate).toISOString().split('T')[0];
+  
     try {
       if (editingStockId) {
-        const updateResponse = await axios.put(`http://localhost:3001/update-stock/${editingStockId}`, { stock_symbol: stockSymbol, buy_price: buyPrice, shares: shares });
+        const updateResponse = await axios.put(`http://localhost:3001/update-stock/${editingStockId}`, { stock_symbol: stockSymbol, buy_price: buyPrice, buy_date: formattedBuyDate, shares: shares });
         if (updateResponse.status === 200) {
           setStockSymbol('');
           setBuyPrice('');
+          setBuyDate(''); // Reset Buy Date
           setShares('');
           setEditingStockId(null);
           fetchStocks();
           alert("Stock updated");
         }
       } else {
-        const addResponse = await axios.post(`http://localhost:3001/insert-stock`, { stock_symbol: stockSymbol, buy_price: buyPrice, shares: shares });
+        const addResponse = await axios.post(`http://localhost:3001/insert-stock`, { stock_symbol: stockSymbol, buy_price: buyPrice, buy_date: formattedBuyDate, shares: shares }); // Pass formatted buy_date to the backend
         if (addResponse.status === 200) {
           setStockSymbol('');
           setBuyPrice('');
+          setBuyDate(''); // Reset Buy Date
           setShares('');
           fetchStocks();
           alert("Stock added");
@@ -97,10 +109,12 @@ function StockBuyInput() {
       alert("Error occurred. Please try again later.");
     }
   };
+  
 
   const handleEditStock = (stock) => {
     setStockSymbol(stock.stock_symbol);
     setBuyPrice(stock.buy_price);
+    setBuyDate(stock.buy_date); // Set Buy Date
     setShares(stock.shares);
     setEditingStockId(stock._id);
   };
@@ -119,25 +133,27 @@ function StockBuyInput() {
       alert("Error occurred while deleting stock. Please try again later.");
     }
   };
-
+  
   const insertStockClosePrice = async (data) => {
     try {
-      console.log("Inserting stock close price:", data); // Add this log
-      const { stock_symbol, buy_price, previousClose, date } = data;
+      console.log("Inserting stock close price:", data);
+      const { stock_symbol, buy_price, buy_date, shares, previousClose } = data;
       const response = await axios.post('http://localhost:3001/insert-stock-close-price', {
         stock_symbol,
         buy_price,
-        previousClose,
-        date
+        buy_date,
+        shares,
+        previousClose
       });
-      console.log("Insert stock close price response:", response); // Add this log
+      console.log("Insert stock close price response:", response);
       return response.data;
     } catch (error) {
       console.error("Error inserting stock close price:", error);
       throw error;
     }
   };
-
+  
+  
   return (
     <div className="stocks-container">
       <div className="stock">
@@ -148,6 +164,7 @@ function StockBuyInput() {
               <tr>
                 <th>Stock Symbol</th>
                 <th>Buy Price</th>
+                <th>Buy Date</th> 
                 <th>Shares</th>
                 <th>Current Price</th>
                 <th>Previous Close</th>
@@ -160,6 +177,7 @@ function StockBuyInput() {
                 <tr key={index}>
                   <td>{stock.stock_symbol}</td>
                   <td>${stock.buy_price}</td>
+                  <td>{new Date(stock.buy_date).toLocaleDateString()}</td>
                   <td>{stock.shares}</td>
                   <td>${stock.current_price}</td>
                   <td>${stock.previous_close}</td>
@@ -168,8 +186,8 @@ function StockBuyInput() {
                     <button onClick={() => handleEditStock(stock)}>Edit</button>
                     <button onClick={() => handleDeleteStock(stock._id)}>Delete</button>
                     <button onClick={() => {
-                      console.log("Capture button clicked"); // Add this log
-                      insertStockClosePrice({ stock_symbol: stock.stock_symbol, buy_price: stock.buy_price, previousClose: stock.previous_close, date: new Date() });
+                      console.log("Capture button clicked"); 
+                      insertStockClosePrice({ stock_symbol: stock.stock_symbol, buy_price: stock.buy_price, buy_date: stock.buy_date, shares: stock.shares, previousClose: stock.previous_close});
                     }}>Capture
                     </button>
                   </td>
@@ -179,7 +197,6 @@ function StockBuyInput() {
           </table>
         </div>
       </div>
-
       <div className="stock-controls"> 
         <form onSubmit={handleSubmit} className="stocks-form"> 
           <div className="stocks-form-group"> 
@@ -200,6 +217,17 @@ function StockBuyInput() {
               id="buyPrice"
               value={buyPrice}
               onChange={handleBuyPriceChange}
+              className="stocks-input" 
+              required
+            />
+          </div>
+          <div className="stocks-form-group"> 
+            <label htmlFor="buyDate" className="stocks-label">Buy Date:</label> 
+            <input
+              type="date"
+              id="buyDate"
+              value={buyDate}
+              onChange={handleBuyDateChange}
               className="stocks-input" 
               required
             />
