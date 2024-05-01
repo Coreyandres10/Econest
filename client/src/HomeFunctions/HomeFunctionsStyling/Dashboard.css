@@ -1,15 +1,38 @@
 .dashboard-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between; /* Ensure items are spread evenly */
   padding: 100px;
   background-color: #ad393900;
 }
 
 .chart-heading {
   text-align: center;
-  margin-top: -85px; 
+  margin-top: -90px; /* Adjust margin as needed */
+}
+
+.chart-container {
+  width: 450px; /* Adjust width as needed */
+  height: 450px; /* Adjust height as needed */
 }
 
 
+.dashboard-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+}
 
+.finance-table {
+  width: 100%;
+}
 
+.amount-header {
+  padding-left: 20px; /* Adjust as needed */
+}
+
+.finance-table td {
+  padding: 10px; /* Adjust padding for table cells */
+}
+.amount-value {
+  font-size: 22px; /* Adjust font size as needed */
+}

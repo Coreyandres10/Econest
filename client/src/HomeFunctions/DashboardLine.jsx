@@ -2,35 +2,39 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 
+// Component for displaying a line chart of portfolio value over time
 function DashboardLineChart() {
-  const [stockData, setStockData] = useState([]);
-  const [selectedStock, setSelectedStock] = useState(null);
+  const [stockData, setStockData] = useState([]); // State for storing stock data
+  const [selectedStock, setSelectedStock] = useState(null); // State for storing selected stock symbol
 
   useEffect(() => {
-    fetchData();
+    fetchData(); // Fetch stock data on component mount
   }, []);
 
+  // Function to fetch stock data from the server
   const fetchData = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/get-stock-close-prices`);
       console.log("Response:", response.data);
-      setStockData(response.data);
+      setStockData(response.data); // Update stock data state with fetched data
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
+  // Effect to log stock data whenever it changes
   useEffect(() => {
     console.log("Stock Data:", stockData);
   }, [stockData]);
 
+  // Function to calculate portfolio value based on stock data
   const calculatePortfolioValue = () => {
     // Initialize portfolio value array with zeros
     const portfolioValue = new Array(stockData.length).fill(0);
 
     // Loop through each stock data entry
     stockData.forEach((entry, index) => {
-      // Calculate the value of the stock based on user's buy price and shares
+      // Calculate the value of the stock based on previous close price
       const stockValue = entry.previousClose * entry.shares;
 
       // Update the portfolio value array with the stock value
@@ -40,20 +44,22 @@ function DashboardLineChart() {
     return portfolioValue;
   };
 
+  // Event handler for selecting a different stock
   const handleStockChange = (event) => {
     setSelectedStock(event.target.value);
   };
 
-  // Filter stock data based on selected stock
+  // Filter stock data based on selected stock symbol
   const filteredStockData = selectedStock ? stockData.filter(entry => entry.stock_symbol === selectedStock) : stockData;
 
   // Transform the filtered data for Chart.js
   const stockLabels = filteredStockData.map(entry => {
     const date = new Date(entry.buy_date);
-    return date.toLocaleDateString('en-US'); // Format date as YYYY-MM-DD
+    return date.toLocaleDateString('en-US'); // Format date as MM/DD/YYYY
   });
   const portfolioValue = calculatePortfolioValue();
 
+  // Data for the line chart
   const data = {
     labels: stockLabels,
     datasets: [
@@ -77,9 +83,12 @@ function DashboardLineChart() {
           <option key={stockSymbol} value={stockSymbol}>{stockSymbol}</option>
         ))}
       </select>
-      <Line data={data} />
+      <div className="chart-container">
+        <Line data={data} />
+      </div>
     </div>
   );
 }
 
 export default DashboardLineChart;
+

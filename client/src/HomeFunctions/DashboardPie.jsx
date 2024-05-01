@@ -1,23 +1,27 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 
+// Component for displaying a combined pie chart of income and expenses
 function CombinedPieChart({ expense, income, style }) {
+  // Calculate total expense
   const totalExpense = expense.reduce((total, transaction) => total + transaction.Amount, 0);
+  // Calculate total income
   const totalIncome = income.reduce((total, transaction) => total + transaction.Amount, 0);
-
-
+  // Calculate net income
   const netIncome = totalIncome - totalExpense;
 
+  // Data for the pie chart
   const data = {
     labels: ['Expense', 'Net Income'],
     datasets: [
       {
         label: 'Income vs Expenses',
-        data: [totalExpense, netIncome], 
+        data: [totalExpense, netIncome],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(75, 192, 192, 0.6)'   
+          'red', // Expense color
+          'green', // Income color
         ],
+        borderColor: 'black', // Border color
         borderWidth: 1,
       },
     ],
@@ -32,3 +36,7 @@ function CombinedPieChart({ expense, income, style }) {
 }
 
 export default CombinedPieChart;
+
+
+
+

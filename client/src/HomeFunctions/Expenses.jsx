@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './HomeFunctionsStyling/Expenses.css'; 
+import './HomeFunctionsStyling/Expenses.css'; // Importing CSS file for styling
 
+// Component for managing expense-related functionalities
 function Expenses() {
-  const [amount, setAmount] = useState('');
-  const [source, setSource] = useState('');
-  const [category, setCategory] = useState('');
-  const [expenses, setExpenses] = useState([]);
-  const [totalExpense, setTotalExpense] = useState(0);
-  const [editingExpenseId, setEditingExpenseId] = useState(null);
+  const [amount, setAmount] = useState(''); // State for amount input
+  const [source, setSource] = useState(''); // State for source input
+  const [category, setCategory] = useState(''); // State for category input
+  const [expenses, setExpenses] = useState([]); // State for storing expense transactions
+  const [totalExpense, setTotalExpense] = useState(0); // State for storing total expenses
+  const [editingExpenseId, setEditingExpenseId] = useState(null); // State for tracking the ID of the expense being edited
 
   useEffect(() => {
-    fetchExpenses();
+    fetchExpenses(); // Fetch expense data on component mount
   }, []);
 
+  // Function to fetch expense transactions from the server
   const fetchExpenses = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/get-transaction`);
       if (response.data && response.data.response) {
         const transactions = response.data.response;
+        // Filter expense transactions and update state
         setExpenses(transactions.filter(transaction => transaction.type.toLowerCase().includes("expense")));
-        calculateTotalExpense(transactions);
+        calculateTotalExpense(transactions); // Calculate and update total expenses
       } else {
         console.error("Invalid expenses data in API response:", response.data);
       }
@@ -29,51 +32,58 @@ function Expenses() {
     }
   };
   
+  // Function to calculate total expenses from the transactions
   const calculateTotalExpense = (transactions) => {
     if (Array.isArray(transactions)) {
       const total = transactions
         .filter(transaction => transaction.type.toLowerCase().includes("expense"))
         .reduce((acc, cur) => acc + cur.Amount, 0);
-      setTotalExpense(total);
+      setTotalExpense(total); // Update total expense state
     } else {
       console.error("Invalid transactions data:", transactions);
     }
   };
 
+  // Event handler for amount input change
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
 
+  // Event handler for source input change
   const handleSourceChange = (e) => {
     setSource(e.target.value);
   };
 
+  // Event handler for category input change
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
 
 //-----------------------------------------------------------------------------
 
+  // Event handler for form submission (adding or updating expense)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingExpenseId) {
         const updateResponse = await axios.put(`http://localhost:3001/update-expense/${editingExpenseId}`, { amount, category, source });
         if (updateResponse.status === 200) {
+          // Clear input fields and reset editing state
           setAmount('');
           setSource('');
           setCategory('');
           setEditingExpenseId(null);
-          fetchExpenses();
+          fetchExpenses(); // Fetch updated expense data
           alert("Expense updated");
         }
       } else {
         const addResponse = await axios.post(`http://localhost:3001/insert-expense`, { amount, category, source });
         if (addResponse.status === 200) {
+          // Clear input fields and fetch updated expense data
           setAmount('');
           setSource('');
           setCategory('');
-          fetchExpenses();
+          fetchExpenses(); // Fetch updated expense data
           alert("Expense added");
         }
       }
@@ -85,7 +95,9 @@ function Expenses() {
   
 //-----------------------------------------------------------------------------
 
+  // Event handler for editing an expense
   const handleEditExpense = (expense) => {
+    // Set input fields with current expense data and set editing state
     setAmount(expense.Amount);
     setSource(expense.Transaction_Detail);
     setCategory(expense.type);
@@ -94,11 +106,12 @@ function Expenses() {
 
 //-----------------------------------------------------------------------------
 
+  // Event handler for deleting an expense
   const handleDeleteExpense = async (expenseId) => {
     try {
       const deleteResponse = await axios.delete(`http://localhost:3001/delete-expense/${expenseId}`);
       if (deleteResponse.status === 200) {
-        fetchExpenses(); 
+        fetchExpenses(); // Fetch updated expense data
         alert("Expense deleted successfully");
       } else {
         alert("Failed to delete expense");
@@ -189,3 +202,4 @@ function Expenses() {
 }
 
 export default Expenses;
+

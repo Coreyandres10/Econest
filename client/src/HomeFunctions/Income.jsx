@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './HomeFunctionsStyling/Income.css';
+import './HomeFunctionsStyling/Income.css'; // Importing CSS file for styling
 
+// Component for managing income-related functionalities
 function Income() {
-  const [amount, setAmount] = useState('');
-  const [source, setSource] = useState('');
-  const [category, setCategory] = useState('');
-  const [incomes, setIncomes] = useState([]);
-  const [totalIncome, setTotalIncome] = useState(0);
-  const [editingIncomeId, setEditingIncomeId] = useState(null);
+  const [amount, setAmount] = useState(''); // State for amount input
+  const [source, setSource] = useState(''); // State for source input
+  const [category, setCategory] = useState(''); // State for category input
+  const [incomes, setIncomes] = useState([]); // State for storing income transactions
+  const [totalIncome, setTotalIncome] = useState(0); // State for storing total income
+  const [editingIncomeId, setEditingIncomeId] = useState(null); // State for tracking the ID of the income being edited
 
   useEffect(() => {
-    fetchIncomes();
+    fetchIncomes(); // Fetch income data on component mount
   }, []);
 
+  // Function to fetch income transactions from the server
   const fetchIncomes = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/get-transaction`);
       if (response.data && response.data.response) {
         const transactions = response.data.response;
+        // Filter income transactions and update state
         setIncomes(transactions.filter(transaction => transaction.type.toLowerCase().includes("income")));
-        calculateTotalIncome(transactions);
+        calculateTotalIncome(transactions); // Calculate and update total income
       } else {
         console.error("Invalid income data in API response:", response.data);
       }
@@ -29,51 +32,58 @@ function Income() {
     }
   };
 
+  // Function to calculate total income from the transactions
   const calculateTotalIncome = (transactions) => {
     if (Array.isArray(transactions)) {
       const total = transactions
         .filter(transaction => transaction.type.toLowerCase().includes("income"))
         .reduce((acc, cur) => acc + cur.Amount, 0);
-      setTotalIncome(total);
+      setTotalIncome(total); // Update total income state
     } else {
       console.error("Invalid transactions data:", transactions);
     }
   };
 
+  // Event handler for amount input change
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
 
+  // Event handler for source input change
   const handleSourceChange = (e) => {
     setSource(e.target.value);
   };
 
+  // Event handler for category input change
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
 
 //-----------------------------------------------------------------------------
 
+  // Event handler for form submission (adding or updating income)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingIncomeId) {
         const updateResponse = await axios.put(`http://localhost:3001/update-income/${editingIncomeId}`, { amount, category, source });
         if (updateResponse.status === 200) {
+          // Clear input fields and reset editing state
           setAmount('');
           setSource('');
           setCategory('');
           setEditingIncomeId(null);
-          fetchIncomes();
+          fetchIncomes(); // Fetch updated income data
           alert("Income updated");
         }
       } else {
         const addResponse = await axios.post(`http://localhost:3001/insert-income`, { amount, category, source });
         if (addResponse.status === 200) {
+          // Clear input fields and fetch updated income data
           setAmount('');
           setSource('');
           setCategory('');
-          fetchIncomes();
+          fetchIncomes(); // Fetch updated income data
           alert("Income added");
         }
       }
@@ -85,7 +95,9 @@ function Income() {
 
 //-----------------------------------------------------------------------------
 
+  // Event handler for editing an income
   const handleEditIncome = (income) => {
+    // Set input fields with current income data and set editing state
     setAmount(income.Amount);
     setSource(income.Transaction_Detail);
     setCategory(income.type);
@@ -94,11 +106,12 @@ function Income() {
 
 //-----------------------------------------------------------------------------
 
+  // Event handler for deleting an income
   const handleDeleteIncome = async (incomeId) => {
     try {
       const deleteResponse = await axios.delete(`http://localhost:3001/delete-income/${incomeId}`);
       if (deleteResponse.status === 200) {
-        fetchIncomes(); 
+        fetchIncomes(); // Fetch updated income data
         alert("Income deleted successfully");
       } else {
         alert("Failed to delete income");
@@ -189,3 +202,4 @@ function Income() {
 }
 
 export default Income;
+

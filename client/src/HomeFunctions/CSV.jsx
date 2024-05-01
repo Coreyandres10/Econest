@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
 import './HomeFunctionsStyling/CSV.css'; 
 import axios from 'axios';
-function CSV() {
-  const [csvFile, setCSVFile] = useState(null);
 
-  const handleFileChange =async (e) => {
+// Component for uploading CSV files
+function CSV() {
+  const [csvFile, setCSVFile] = useState(null); // State for storing the selected CSV file
+
+  // Event handler for when a file is selected
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    setCSVFile(file);
- 
+    setCSVFile(file); // Update CSV file state with the selected file
   };
 
-  const handleSubmit =async(e) => {
+  // Event handler for form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (csvFile) {
-      let formdata=new FormData()
-      formdata.append('file',csvFile)
-      let response=await axios.post(`http://localhost:3001/uploadcsv`,formdata)
-     if(response.status==200){
-      console.log(response.data.message)
-     }
+      // Create form data
+      let formData = new FormData();
+      formData.append('file', csvFile);
+
+      try {
+        // Send POST request to upload CSV file
+        let response = await axios.post(`http://localhost:3001/uploadcsv`, formData);
+        if (response.status === 200) {
+          console.log(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error uploading CSV file:", error);
+      }
 
       console.log('CSV file:', csvFile);
     }
@@ -47,3 +57,4 @@ function CSV() {
 }
 
 export default CSV;
+
