@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import './HomeFunctionsStyling/CSV.css'; 
 import axios from 'axios';
 
-// Component for uploading CSV files
 function CSV() {
   const [csvFile, setCSVFile] = useState(null); // State for storing the selected CSV file
 
   // Event handler for when a file is selected
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    setCSVFile(file); // Update CSV file state with the selected file
+    setCSVFile(file); 
   };
 
   // Event handler for form submission
@@ -17,7 +16,6 @@ function CSV() {
     e.preventDefault();
 
     if (csvFile) {
-      // Create form data
       let formData = new FormData();
       formData.append('file', csvFile);
 

@@ -18,10 +18,10 @@ function CombinedPieChart({ expense, income, style }) {
         label: 'Income vs Expenses',
         data: [totalExpense, netIncome],
         backgroundColor: [
-          'red', // Expense color
-          'green', // Income color
+          'red', 
+          'green', 
         ],
-        borderColor: 'black', // Border color
+        borderColor: 'black', 
         borderWidth: 1,
       },
     ],

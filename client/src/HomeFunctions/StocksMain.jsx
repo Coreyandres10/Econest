@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Stocks from './Stocks/Stocks'; // Importing Stocks component
-import StockBuyInput from './Stocks/StockBuyInput'; // Importing StockBuyInput component
+import Stocks from './Stocks/Stocks'; 
+import StockBuyInput from './Stocks/StockBuyInput'; 
 
 // Component for managing stock-related functionalities
 function StocksMain() {
-  const [activeTab, setActiveTab] = useState('buyStock'); // State to manage active tab
+  const [activeTab, setActiveTab] = useState('buyStock'); 
 
   // Function to change active tab
   const changeTab = (tab) => {
@@ -13,14 +13,12 @@ function StocksMain() {
 
   return (
     <div>
-      {/* Button to switch to Stock Tracker tab */}
       <button
         className={activeTab === 'buyStock' ? 'tab-btn active' : 'tab-btn'}
         onClick={() => changeTab('buyStock')}
       >
         Stock Tracker
       </button>
-      {/* Button to switch to Stock News tab */}
       <button
         className={activeTab === 'stocks' ? 'tab-btn active' : 'tab-btn'}
         onClick={() => changeTab('stocks')}

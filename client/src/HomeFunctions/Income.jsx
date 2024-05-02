@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './HomeFunctionsStyling/Income.css'; // Importing CSS file for styling
+import './HomeFunctionsStyling/Income.css'; 
 
 // Component for managing income-related functionalities
 function Income() {
-  const [amount, setAmount] = useState(''); // State for amount input
-  const [source, setSource] = useState(''); // State for source input
-  const [category, setCategory] = useState(''); // State for category input
-  const [incomes, setIncomes] = useState([]); // State for storing income transactions
-  const [totalIncome, setTotalIncome] = useState(0); // State for storing total income
-  const [editingIncomeId, setEditingIncomeId] = useState(null); // State for tracking the ID of the income being edited
+  const [amount, setAmount] = useState(''); 
+  const [source, setSource] = useState(''); 
+  const [category, setCategory] = useState(''); 
+  const [incomes, setIncomes] = useState([]); 
+  const [totalIncome, setTotalIncome] = useState(0); 
+  const [editingIncomeId, setEditingIncomeId] = useState(null); 
 
   useEffect(() => {
-    fetchIncomes(); // Fetch income data on component mount
+    fetchIncomes(); 
   }, []);
 
   // Function to fetch income transactions from the server
@@ -23,7 +23,7 @@ function Income() {
         const transactions = response.data.response;
         // Filter income transactions and update state
         setIncomes(transactions.filter(transaction => transaction.type.toLowerCase().includes("income")));
-        calculateTotalIncome(transactions); // Calculate and update total income
+        calculateTotalIncome(transactions); 
       } else {
         console.error("Invalid income data in API response:", response.data);
       }
@@ -38,7 +38,7 @@ function Income() {
       const total = transactions
         .filter(transaction => transaction.type.toLowerCase().includes("income"))
         .reduce((acc, cur) => acc + cur.Amount, 0);
-      setTotalIncome(total); // Update total income state
+      setTotalIncome(total); 
     } else {
       console.error("Invalid transactions data:", transactions);
     }
@@ -73,7 +73,7 @@ function Income() {
           setSource('');
           setCategory('');
           setEditingIncomeId(null);
-          fetchIncomes(); // Fetch updated income data
+          fetchIncomes(); 
           alert("Income updated");
         }
       } else {
@@ -83,7 +83,7 @@ function Income() {
           setAmount('');
           setSource('');
           setCategory('');
-          fetchIncomes(); // Fetch updated income data
+          fetchIncomes(); 
           alert("Income added");
         }
       }
@@ -111,7 +111,7 @@ function Income() {
     try {
       const deleteResponse = await axios.delete(`http://localhost:3001/delete-income/${incomeId}`);
       if (deleteResponse.status === 200) {
-        fetchIncomes(); // Fetch updated income data
+        fetchIncomes(); 
         alert("Income deleted successfully");
       } else {
         alert("Failed to delete income");

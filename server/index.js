@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require('path');
 const fs = require('fs');
-const csvmulter = require('./util/csv_handler'); // Importing multer middleware for handling CSV file uploads
+const csvmulter = require('./util/csv_handler'); 
 const EconestModel = require("./models/Econest");
 const csv = require('csvtojson');
 const stockmodel = require('./models/stock');
@@ -71,6 +71,8 @@ app.post('/uploadcsv', csvmulter.single("file"), async (req, res) => {
     }
 });
 
+// ----------------------------------------------------------
+
 // GET DATA endpoints
 // Endpoint to get transaction data
 app.get('/get-transaction', async (req, res) => {
@@ -112,6 +114,8 @@ app.get('/get-stock-close-prices', async (req, res) => {
     }
 });
 
+// ----------------------------------------------------------
+
 // INCOME endpoints
 // Endpoint to insert income
 app.post('/insert-income', async (req, res) => {
@@ -132,10 +136,8 @@ app.post('/insert-income', async (req, res) => {
         return res.status(500).json({ error: "Server error please try later" });
     }
 });
-// ...other INCOME endpoints...
 
-// EXPENSES endpoints
-// ...EXPENSES endpoints...
+// ----------------------------------------------------------
 
 // STOCK endpoints
 // Endpoint to insert stock
@@ -158,7 +160,8 @@ app.post('/insert-stock', async (req, res) => {
         return res.status(500).json({ error: "Server error please try later" });
     }
 });
-// ...other STOCK endpoints...
+
+// ----------------------------------------------------------
 
 // Testing connection middleware
 app.use((err, req, res, next) => {

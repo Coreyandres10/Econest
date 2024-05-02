@@ -23,15 +23,15 @@ function FinanceTable({ expense, income }) {
           <tbody>
             <tr>
               <td>Income:</td>
-              <td className="amount-value">$ {totalIncome}</td> {/* Add dollar sign to display total income */}
+              <td className="amount-value">$ {totalIncome}</td> 
             </tr>
             <tr>
               <td>Expenses:</td>
-              <td className="amount-value">$ {totalExpense}</td> {/* Add dollar sign to display total expense */}
+              <td className="amount-value">$ {totalExpense}</td> 
             </tr>
             <tr>
               <td>Net Income:</td>
-              <td className="amount-value">$ {netIncome}</td> {/* Add dollar sign to display net income */}
+              <td className="amount-value">$ {netIncome}</td>
             </tr>
           </tbody>
         </table>

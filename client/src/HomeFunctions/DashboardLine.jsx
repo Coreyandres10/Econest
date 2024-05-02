@@ -4,11 +4,11 @@ import { Line } from 'react-chartjs-2';
 
 // Component for displaying a line chart of portfolio value over time
 function DashboardLineChart() {
-  const [stockData, setStockData] = useState([]); // State for storing stock data
-  const [selectedStock, setSelectedStock] = useState(null); // State for storing selected stock symbol
+  const [stockData, setStockData] = useState([]); 
+  const [selectedStock, setSelectedStock] = useState(null); 
 
   useEffect(() => {
-    fetchData(); // Fetch stock data on component mount
+    fetchData(); 
   }, []);
 
   // Function to fetch stock data from the server
@@ -16,7 +16,7 @@ function DashboardLineChart() {
     try {
       const response = await axios.get(`http://localhost:3001/get-stock-close-prices`);
       console.log("Response:", response.data);
-      setStockData(response.data); // Update stock data state with fetched data
+      setStockData(response.data); 
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -78,7 +78,6 @@ function DashboardLineChart() {
       <h2 className="chart-heading">Portfolio Value Over Time</h2>
       <select value={selectedStock} onChange={handleStockChange}>
         <option value="">Select a stock</option>
-        {/* Render options based on unique stock symbols */}
         {Array.from(new Set(stockData.map(entry => entry.stock_symbol))).map(stockSymbol => (
           <option key={stockSymbol} value={stockSymbol}>{stockSymbol}</option>
         ))}

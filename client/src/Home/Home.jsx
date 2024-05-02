@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Dashboard from '../HomeFunctions/Dashboard'; // Importing Dashboard component
-import Income from '../HomeFunctions/Income'; // Importing Income component
-import Expenses from '../HomeFunctions/Expenses'; // Importing Expenses component
-import StocksMain from '../HomeFunctions/StocksMain'; // Importing StocksMain component
-import CSV from '../HomeFunctions/CSV'; // Importing CSV component
-import './Home.css'; // Importing CSS file for styling
-import CompanyLogo from '../Pictures/EconestPng.png'; // Importing Company Logo image
-import AvatarIcon from '../Pictures/Avatar.jpeg'; // Importing Avatar Icon image
+import Dashboard from '../HomeFunctions/Dashboard'; 
+import Income from '../HomeFunctions/Income'; 
+import Expenses from '../HomeFunctions/Expenses'; 
+import StocksMain from '../HomeFunctions/StocksMain'; 
+import CSV from '../HomeFunctions/CSV'; 
+import './Home.css'; 
+import CompanyLogo from '../Pictures/EconestPng.png'; 
+import AvatarIcon from '../Pictures/Avatar.jpeg'; 
 
 function Home() {
   // State to manage active tab
@@ -20,9 +20,8 @@ function Home() {
   // Rendering component
   return (
     <div className="home-container">
-      {/* Header section */}
       <header className="home-header">
-        {/* Welcome box with avatar icon */}
+        {/* Welcome box */}
         <div className="welcome-box">
           <img src={AvatarIcon} alt="Avatar" className="avatar" />
           <span className="welcome-text">Welcome Back!</span>
@@ -72,20 +71,14 @@ function Home() {
 
       {/* Tab content section */}
       <div className="tab-content">
-        {/* Rendering Dashboard component if activeTab is 'dashboard' */}
         {activeTab === 'dashboard' && <Dashboard />}
-        {/* Rendering Income component if activeTab is 'income' */}
         {activeTab === 'income' && <Income />}
-        {/* Rendering Expenses component if activeTab is 'expenses' */}
         {activeTab === 'expenses' && <Expenses />}
-        {/* Rendering StocksMain component if activeTab is 'stocksMain' */}
         {activeTab === 'stocksMain' && <StocksMain />}
-        {/* Rendering CSV component if activeTab is 'csvUpload' */}
         {activeTab === 'csvUpload' && <CSV />}
       </div>
     </div>
   );
 }
 
-// Exporting the Home component
 export default Home;

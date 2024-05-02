@@ -5,7 +5,7 @@ import '../HomeFunctionsStyling/StockBuyInput.css';
 function StockBuyInput() {
   const [stockSymbol, setStockSymbol] = useState('');
   const [buyPrice, setBuyPrice] = useState('');
-  const [buyDate, setBuyDate] = useState(''); // New state for Buy Date
+  const [buyDate, setBuyDate] = useState(''); 
   const [shares, setShares] = useState('');
   const [stocks, setStocks] = useState([]);
   const [editingStockId, setEditingStockId] = useState(null);
@@ -62,7 +62,7 @@ function StockBuyInput() {
     setBuyPrice(e.target.value);
   };
 
-  const handleBuyDateChange = (e) => { // New event handler for Buy Date
+  const handleBuyDateChange = (e) => { 
     setBuyDate(e.target.value);
   };
 
@@ -75,7 +75,7 @@ function StockBuyInput() {
     console.log("Submitting form...");
     console.log("Stock Symbol:", stockSymbol);
     console.log("Buy Price:", buyPrice);
-    console.log("Buy Date:", buyDate); // Log Buy Date
+    console.log("Buy Date:", buyDate); 
     console.log("Shares:", shares);
     
     // Format the buyDate value to "yyyy-MM-dd" format
@@ -87,7 +87,7 @@ function StockBuyInput() {
         if (updateResponse.status === 200) {
           setStockSymbol('');
           setBuyPrice('');
-          setBuyDate(''); // Reset Buy Date
+          setBuyDate(''); 
           setShares('');
           setEditingStockId(null);
           fetchStocks();
@@ -98,7 +98,7 @@ function StockBuyInput() {
         if (addResponse.status === 200) {
           setStockSymbol('');
           setBuyPrice('');
-          setBuyDate(''); // Reset Buy Date
+          setBuyDate('');
           setShares('');
           fetchStocks();
           alert("Stock added");
@@ -114,7 +114,7 @@ function StockBuyInput() {
   const handleEditStock = (stock) => {
     setStockSymbol(stock.stock_symbol);
     setBuyPrice(stock.buy_price);
-    setBuyDate(stock.buy_date); // Set Buy Date
+    setBuyDate(stock.buy_date);
     setShares(stock.shares);
     setEditingStockId(stock._id);
   };

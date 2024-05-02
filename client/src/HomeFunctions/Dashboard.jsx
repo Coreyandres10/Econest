@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CombinedPieChart from './DashboardPie';
 import CombinedLineChart from './DashboardLine';
-import FinanceTable from './FinanceTable'; // Import the FinanceTable component
+import FinanceTable from './FinanceTable'; 
 import './HomeFunctionsStyling/Dashboard.css';
 
 // Component for the dashboard displaying various financial data
@@ -18,7 +18,7 @@ function Dashboard() {
     try {
       const response = await axios.get(`http://localhost:3001/get-transaction`);
       console.log("Response:", response.data);
-      setTransactions(response.data.response); // Update transaction data state with fetched data
+      setTransactions(response.data.response); 
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -36,7 +36,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <CombinedPieChart expense={expense} income={income} style={{ width: '480px', height: '480px' }} />
-      <FinanceTable expense={expense} income={income} /> {/* Render the FinanceTable component */}
+      <FinanceTable expense={expense} income={income} /> 
       <CombinedLineChart />
     </div>
   );
