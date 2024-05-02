@@ -9,6 +9,7 @@ function StockBuyInput() {
   const [shares, setShares] = useState('');
   const [stocks, setStocks] = useState([]);
   const [editingStockId, setEditingStockId] = useState(null);
+  const [totalPortfolio, setTotalPortfolio] = useState(0); // Added state for total portfolio
 
   useEffect(() => {
     fetchStocks();
@@ -24,12 +25,18 @@ function StockBuyInput() {
           return { ...stock, current_price, previous_close };
         }));
         setStocks(updatedStocks);
+        calculateTotalPortfolio(updatedStocks); // Calculate total portfolio
       } else {
         console.error("Invalid stock data in API response:", response.data);
       }
     } catch (error) {
       console.error("Error fetching stocks:", error);
     }
+  };
+
+  const calculateTotalPortfolio = (stockList) => {
+    const total = stockList.reduce((acc, stock) => acc + stock.current_price * stock.shares, 0);
+    setTotalPortfolio(total);
   };
 
   const fetchStockData = async (symbol) => {
@@ -176,16 +183,16 @@ function StockBuyInput() {
               {stocks.map((stock, index) => (
                 <tr key={index}>
                   <td>{stock.stock_symbol}</td>
-                  <td>${stock.buy_price}</td>
+                  <td>${stock.buy_price.toFixed(2)}</td>
                   <td>{new Date(stock.buy_date).toLocaleDateString()}</td>
                   <td>{stock.shares}</td>
-                  <td>${stock.current_price}</td>
+                  <td>${stock.current_price.toFixed(2)}</td>
                   <td>${stock.previous_close}</td>
-                  <td>${stock.current_price * stock.shares}</td>
+                  <td>${(stock.current_price * stock.shares).toFixed(2)}</td>
                   <td>
-                    <button onClick={() => handleEditStock(stock)}>Edit</button>
-                    <button onClick={() => handleDeleteStock(stock._id)}>Delete</button>
-                    <button onClick={() => {
+                    <button className="edit-button" onClick={() => handleEditStock(stock)}>Edit</button>
+                    <button className="delete-button" onClick={() => handleDeleteStock(stock._id)}>Delete</button>
+                    <button className="capture-button" onClick={() => {
                       console.log("Capture button clicked"); 
                       insertStockClosePrice({ stock_symbol: stock.stock_symbol, buy_price: stock.buy_price, buy_date: stock.buy_date, shares: stock.shares, previousClose: stock.previous_close});
                     }}>Capture
@@ -195,6 +202,7 @@ function StockBuyInput() {
               ))}
             </tbody>
           </table>
+          <p className="total-stocks">Total Portfolio Value: ${totalPortfolio.toFixed(2)}</p>
         </div>
       </div>
       <div className="stock-controls"> 

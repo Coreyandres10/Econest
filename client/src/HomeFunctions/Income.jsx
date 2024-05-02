@@ -124,6 +124,23 @@ function Income() {
   
 //-----------------------------------------------------------------------------
 
+// Function to format the amount with commas and decimal points
+const formatAmount = (amount) => {
+  // Check if the amount is a whole number
+  if (Number.isInteger(amount)) {
+    return amount.toFixed(2); // Add '.00' for whole numbers
+  } else {
+    // Convert the number to a string and split it into parts (before and after the decimal point)
+    const parts = amount.toString().split('.');
+    // Add commas to the integer part
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    // Return the formatted amount
+    return parts.join('.');
+  }
+};
+
+//-----------------------------------------------------------------------------
+
   return (
     <div className="incomes-container">
       <div className="income">
@@ -142,17 +159,17 @@ function Income() {
               {incomes.map((transaction, index) => (
                 <tr key={index}>
                   <td>{transaction.Transaction_Detail}</td>
-                  <td>${transaction.Amount}</td>
+                  <td>${formatAmount(transaction.Amount)}</td>
                   <td>{transaction.type}</td>
                   <td>
-                    <button onClick={() => handleEditIncome(transaction)}>Edit</button>
-                    <button onClick={() => handleDeleteIncome(transaction._id)}>Delete</button>
+                    <button className="edit-button" onClick={() => handleEditIncome(transaction)}>Edit</button>
+                    <button className="delete-button" onClick={() => handleDeleteIncome(transaction._id)}>Delete</button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <p>Total Incomes: ${totalIncome}</p>
+          <p className="total-incomes">Total Incomes: ${formatAmount(totalIncome)}</p>
         </div>
       </div>
       

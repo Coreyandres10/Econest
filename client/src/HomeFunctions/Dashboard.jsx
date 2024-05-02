@@ -36,9 +36,9 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <CombinedPieChart expense={expense} income={income}/>
-      <div class="finance-summary">
-        <h2 class="finance-table-heading">Financial Summary</h2>
-        <div class="finance-table-container">
+      <div className="finance-summary">
+        <h2 className="finance-table-heading">Financial Summary</h2>
+        <div className="finance-table-container">
           <FinanceTable expense={expense} income={income} />
         </div>
       </div>

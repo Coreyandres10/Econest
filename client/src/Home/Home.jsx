@@ -37,7 +37,7 @@ function Home() {
           className={activeTab === 'dashboard' ? 'tab-btn active' : 'tab-btn'}
           onClick={() => changeTab('dashboard')}
         >
-          Dashboard
+          Home
         </button>
         {/* Button for Income tab */}
         <button

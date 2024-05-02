@@ -3,25 +3,23 @@
   display: flex;
   justify-content: space-between;
 }
-.stock-table {
-  width: 100%;
-  border-collapse: collapse; 
-}
 
 .stock-table th,
 .stock-table td {
   border: 1px solid #ddd; 
-  padding: 12px; 
+  padding: 20px; 
   text-align: left;
+  font-size: 20px; 
 }
 
 .stock-table th {
-  background-color: #f2f2f2; /
+  background-color: #ffffff; /
 }
 
 .stock-controls {
-  width: 70%;
+  width: 50%;
   display: flex;
+  justify-content: space-between;
   align-items: center; 
 }
 
@@ -32,6 +30,10 @@
 
 .stocks-form-group {
   margin-bottom: 15px;
+}
+
+.stocks-label {
+  font-size: 22px;
 }
 
 .stocks-input,
@@ -48,8 +50,29 @@
   padding: 8px 20px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .stocks-button:hover {
   background-color: #0056b3;
+}
+
+.capture-button,
+.delete-button,
+.edit-button {
+  background-color: #ffc107;
+  color: #333;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 0px 10px;
+  cursor: pointer;
+}
+
+.delete-button:hover
+.edit-button:hover {
+  background-color: #dd9b00;
+}
+
+.total-stocks {
+  font-size: 25px;
+  color: #000000;
 }

@@ -3,20 +3,17 @@
   display: flex;
   justify-content: space-between;
 }
-.expense-table {
-  width: 100%;
-  border-collapse: collapse; 
-}
 
 .expense-table th,
 .expense-table td {
   border: 1px solid #ddd; 
-  padding: 8px; 
+  padding: 20px; 
   text-align: left;
+  font-size: 20px; 
 }
 
 .expense-table th {
-  background-color: #f2f2f2; /
+  background-color: #ffffff; /
 }
 
 .expense-controls {
@@ -29,10 +26,15 @@
 .expenses-form {
   display: flex;
   flex-direction: column;
+  margin-left: 100px;
 }
 
 .expenses-form-group {
   margin-bottom: 15px;
+}
+
+.expenses-label {
+  font-size: 22px;
 }
 
 .expenses-input,
@@ -49,8 +51,28 @@
   padding: 8px 20px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .expenses-button:hover {
   background-color: #0056b3;
+}
+
+.delete-button,
+.edit-button {
+  background-color: #ffc107;
+  color: #333;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.delete-button:hover
+.edit-button:hover {
+  background-color: #dd9b00;
+}
+
+.total-incomes {
+  font-size: 25px;
+  color: #000000;
 }

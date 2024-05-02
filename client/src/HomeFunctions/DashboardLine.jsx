@@ -5,7 +5,7 @@ import { Line } from 'react-chartjs-2';
 // Component for displaying a line chart of portfolio value over time
 function DashboardLineChart() {
   const [stockData, setStockData] = useState([]); 
-  const [selectedStock, setSelectedStock] = useState(null); 
+  const [selectedStock, setSelectedStock] = useState(''); 
 
   useEffect(() => {
     fetchData(); 
