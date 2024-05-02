@@ -77,7 +77,7 @@ function DashboardLineChart() {
   return (
     <div>
       <h2 className="line-chart-heading">Stock Portfolio Over Time</h2>
-      <div className="chart-container" style={{ width: '750px'}}>
+      <div className="chart-container" style={{ width: '850px'}}>
         <Line data={data} />
       </div>
       <select 

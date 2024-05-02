@@ -45,9 +45,8 @@
   }
   
   .csv-image {
-    /* Add your CSS styles for the image here */
-    width: 700px; /* Example width */
-    height: auto; /* Example height */
-    margin-left: 500px;
+    width: 700px; 
+    height: auto; 
+    margin-left: 560px;
   }
   
