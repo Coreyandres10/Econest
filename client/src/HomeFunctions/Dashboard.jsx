@@ -35,9 +35,14 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <CombinedPieChart expense={expense} income={income} style={{ width: '480px', height: '480px' }} />
-      <FinanceTable expense={expense} income={income} /> 
-      <CombinedLineChart />
+      <CombinedPieChart expense={expense} income={income}/>
+      <div class="finance-summary">
+        <h2 class="finance-table-heading">Financial Summary</h2>
+        <div class="finance-table-container">
+          <FinanceTable expense={expense} income={income} />
+        </div>
+      </div>
+      <CombinedLineChart/>
     </div>
   );
 }

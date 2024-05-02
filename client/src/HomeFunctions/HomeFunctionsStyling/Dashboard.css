@@ -5,34 +5,62 @@
   background-color: #ad393900;
 }
 
-.chart-heading {
+.line-chart-heading {
   text-align: center;
   margin-top: -90px; 
+  margin-right: -90px;
+  font-size: 38px;
 }
 
-.chart-container {
-  width: 450px; 
-  height: 450px; 
+.pie-chart-heading {
+  text-align: center;
+  margin-top: -90px; 
+  margin-left: -195px;
+  font-size: 38px;
 }
-
 
 .dashboard-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start; 
+  font-size: 22px;
 }
 
-.finance-table {
-  width: 100%;
+.chart-container{
+  margin-right: -100px;
 }
 
-.amount-header {
-  padding-left: 20px; 
+.piechart{
+  margin-left: -100px;
+}
+
+.finance-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: -215px;
+  margin-top: 100px;
+  font-size: 18px;
 }
 
 .finance-table td {
   padding: 10px; 
-}
-.amount-value {
   font-size: 22px;
 }
+
+.stock-select {
+  width: 200px;
+  padding: 8px 20px;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  background-color: white;
+  text-align: center; 
+  margin-left: 280px; 
+}
+
+.stock-select:focus {
+  outline: none;
+  border-color: #007bff; 
+}
+

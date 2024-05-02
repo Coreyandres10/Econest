@@ -58,14 +58,15 @@ function DashboardLineChart() {
     return date.toLocaleDateString('en-US'); // Format date as MM/DD/YYYY
   });
   const portfolioValue = calculatePortfolioValue();
+  const reversedLabels = stockLabels.reverse();
 
   // Data for the line chart
   const data = {
-    labels: stockLabels,
+    labels: reversedLabels,
     datasets: [
       {
         label: 'Portfolio Value',
-        data: portfolioValue,
+        data: portfolioValue.reverse(),
         fill: false,
         borderColor: 'rgba(75, 192, 192, 0.6)',
         tension: 0.1
@@ -75,16 +76,20 @@ function DashboardLineChart() {
 
   return (
     <div>
-      <h2 className="chart-heading">Portfolio Value Over Time</h2>
-      <select value={selectedStock} onChange={handleStockChange}>
+      <h2 className="line-chart-heading">Stock Portfolio Over Time</h2>
+      <div className="chart-container" style={{ width: '750px'}}>
+        <Line data={data} />
+      </div>
+      <select 
+        value={selectedStock} 
+        onChange={handleStockChange}
+        className="stock-select"
+      >
         <option value="">Select a stock</option>
         {Array.from(new Set(stockData.map(entry => entry.stock_symbol))).map(stockSymbol => (
           <option key={stockSymbol} value={stockSymbol}>{stockSymbol}</option>
         ))}
       </select>
-      <div className="chart-container">
-        <Line data={data} />
-      </div>
     </div>
   );
 }

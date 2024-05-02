@@ -12,14 +12,14 @@ function CombinedPieChart({ expense, income, style }) {
 
   // Data for the pie chart
   const data = {
-    labels: ['Expense', 'Net Income'],
+    labels: ['Net Income', 'Expenses'],
     datasets: [
       {
         label: 'Income vs Expenses',
-        data: [totalExpense, netIncome],
+        data: [netIncome, totalExpense],
         backgroundColor: [
-          'red', 
-          'green', 
+          'rgba(0, 153, 153, 0.6)', // Teal
+          'rgba(255, 0, 0, 0.5)', // Bright Red
         ],
         borderColor: 'black', 
         borderWidth: 1,
@@ -29,8 +29,10 @@ function CombinedPieChart({ expense, income, style }) {
 
   return (
     <div style={style}>
-      <h2 className="chart-heading">Net Income vs Expenses</h2>
-      <Pie data={data} />
+      <h2 className="pie-chart-heading">Net Income vs Expenses</h2>
+      <div style={{ width: '480px', height: '480px' }}> 
+        <Pie data={data} className="piechart"/>
+      </div>
     </div>
   );
 }

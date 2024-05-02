@@ -9,9 +9,13 @@ function FinanceTable({ expense, income }) {
   // Calculate net income
   const netIncome = totalIncome - totalExpense;
 
+  // Function to format numbers with commas and decimals
+  const formatNumber = (number) => {
+    return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  };
+
   return (
     <div className="finance-table-container">
-      <h2 className="finance-table-heading">Financial Summary</h2>
       <div className="finance-table-content">
         <table className="finance-table">
           <thead>
@@ -23,15 +27,15 @@ function FinanceTable({ expense, income }) {
           <tbody>
             <tr>
               <td>Income:</td>
-              <td className="amount-value">$ {totalIncome}</td> 
+              <td className="amount-value">$ {formatNumber(totalIncome)}</td>
             </tr>
             <tr>
               <td>Expenses:</td>
-              <td className="amount-value">$ {totalExpense}</td> 
+              <td className="amount-value">$ {formatNumber(totalExpense)}</td>
             </tr>
             <tr>
               <td>Net Income:</td>
-              <td className="amount-value">$ {netIncome}</td>
+              <td className="amount-value">$ {formatNumber(netIncome)}</td>
             </tr>
           </tbody>
         </table>
@@ -41,9 +45,3 @@ function FinanceTable({ expense, income }) {
 }
 
 export default FinanceTable;
-
-
-
-
-
-
