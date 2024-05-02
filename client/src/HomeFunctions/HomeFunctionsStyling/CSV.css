@@ -1,11 +1,11 @@
 .csv-container {
     margin-top: 20px;
-    
+
   }
   
   .csv-heading {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
   }
   
   .csv-form {
@@ -20,6 +20,7 @@
   
   .csv-label {
     font-weight: bold;
+    margin-left: 100px;
   }
   
   .csv-input {
@@ -41,5 +42,12 @@
   
   .csv-button:hover {
     background-color: #0056b3;
+  }
+  
+  .csv-image {
+    /* Add your CSS styles for the image here */
+    width: 700px; /* Example width */
+    height: auto; /* Example height */
+    margin-left: 500px;
   }
   

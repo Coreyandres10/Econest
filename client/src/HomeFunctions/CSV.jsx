@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './HomeFunctionsStyling/CSV.css'; 
 import axios from 'axios';
+import csvImage from '../Pictures/csvexample.png'; // Import the PNG image
 
 function CSV() {
   const [csvFile, setCSVFile] = useState(null); // State for storing the selected CSV file
@@ -36,6 +37,7 @@ function CSV() {
   return (
     <div className="csv-container">
       <h2 className="csv-heading">CSV Upload</h2>
+      <img src={csvImage} alt="CSV Example" className="csv-image" />
       <form onSubmit={handleSubmit} className="csv-form">
         <div className="csv-form-group">
           <label htmlFor="csvFile" className="csv-label">Choose CSV file:</label>
@@ -55,4 +57,5 @@ function CSV() {
 }
 
 export default CSV;
+
 
