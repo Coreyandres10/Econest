@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './HomeFunctionsStyling/CSV.css'; 
+import './HomeFunctionsStyling/CSV.css';
 import axios from 'axios';
 import csvImage from '../Pictures/csvexample.png'; // Import the PNG image
 
@@ -9,7 +9,7 @@ function CSV() {
   // Event handler for when a file is selected
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    setCSVFile(file); 
+    setCSVFile(file);
   };
 
   // Event handler for form submission
@@ -24,10 +24,11 @@ function CSV() {
         // Send POST request to upload CSV file
         let response = await axios.post(`http://localhost:3001/uploadcsv`, formData);
         if (response.status === 200) {
-          console.log(response.data.message);
+          window.alert("CSV upload successful");
         }
       } catch (error) {
         console.error("Error uploading CSV file:", error);
+        window.alert("Error uploading CSV file. Please try again.");
       }
 
       console.log('CSV file:', csvFile);
@@ -57,5 +58,6 @@ function CSV() {
 }
 
 export default CSV;
+
 
 
