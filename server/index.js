@@ -13,7 +13,7 @@ const stockClosePriceModel=require('./models/stockcloseprice')
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://127.0.0.1:27017/Econest");
+mongoose.connect("mongodb://localhost:27017/Econest");
 
 //-----------------------------------------------------------------------------
 //LOGIN
@@ -51,7 +51,6 @@ app.post('/uploadcsv', csvmulter.single("file"), async (req, res) => {
     try {
         const dirpath = path.join(__dirname, 'public', 'csv'); 
 
-      
         if (!fs.existsSync(dirpath)) {
             fs.mkdirSync(dirpath, { recursive: true });
         }
@@ -60,32 +59,37 @@ app.post('/uploadcsv', csvmulter.single("file"), async (req, res) => {
         const destinationFilePath = path.join(dirpath, req.file.originalname);
 
         fs.writeFileSync(destinationFilePath, csvData);
-csv().fromFile(destinationFilePath).then(async(response)=>{
-  response.map(async(val,i)=>{
-    const transactionDetail = val['Transaction Detail'];
-    const date=val.Date
-    const amount=val.Amount;
-    const balance=val.Balance;
-    const reoccuring=val.Reoccuring
-    const type=val.type
-if(transactionDetail && date && amount && balance && reoccuring && type){
-    console.log(type)
-    console.log(balance)
-    console.log(amount)
-await transactionmodel.create({
-    Date:date,
-    Transaction_Detail:transactionDetail,
-    Amount:amount,
-    Balance:balance,
-    Reoccuring:reoccuring,
-    type:type
-})
-}
-  })
-  
-})
-      return  res.status(200).json({
-            message: "File uploaded successfully"
+
+        csv().fromFile(destinationFilePath).then(async (response) => {
+            const promises = response.map(async (val, i) => {
+                const transactionDetail = val['Transaction Detail'];
+                const date = val.Date;
+                const amount = val.Amount;
+                const balance = val.Balance;
+                const reoccuring = val.Reoccuring;
+                const type = val.type;
+
+                if (transactionDetail && date && amount && balance && reoccuring && type) {
+                    console.log(type);
+                    console.log(balance);
+                    console.log(amount);
+                    await transactionmodel.create({
+                        Date: date,
+                        Transaction_Detail: transactionDetail,
+                        Amount: amount,
+                        Balance: balance,
+                        Reoccuring: reoccuring,
+                        type: type
+                    });
+                }
+            });
+
+            // Wait for all database operations to complete
+            await Promise.all(promises);
+
+            return res.status(200).json({
+                message: "File uploaded successfully"
+            });
         });
     } catch (error) {
         console.error(error.message);
@@ -94,6 +98,7 @@ await transactionmodel.create({
         });
     }
 });
+
 
 //-----------------------------------------------------------------------------
 //GET DATA
