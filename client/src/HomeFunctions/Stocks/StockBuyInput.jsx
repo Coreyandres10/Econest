@@ -9,7 +9,7 @@ function StockBuyInput() {
   const [shares, setShares] = useState('');
   const [stocks, setStocks] = useState([]);
   const [editingStockId, setEditingStockId] = useState(null);
-  const [totalPortfolio, setTotalPortfolio] = useState(0); // Added state for total portfolio
+  const [totalPortfolio, setTotalPortfolio] = useState(0); 
 
   useEffect(() => {
     fetchStocks();

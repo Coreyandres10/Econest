@@ -53,7 +53,7 @@ function Stocks() {
           className="stocks-input"
           required
         />
-        <button type="submit" className="stocks-button">Fetch News</button>
+        <button type="submit" className="stocks-button">Fetch News Feed</button>
       </form>
       {isLoading && <p className="stocks-loading">Loading...</p>}
       {error && <p className="stocks-error">Error: {error}</p>}

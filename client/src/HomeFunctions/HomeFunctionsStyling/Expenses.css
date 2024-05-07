@@ -30,18 +30,25 @@
 }
 
 .expenses-form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .expenses-label {
   font-size: 22px;
+  margin-bottom: 5px; 
 }
 
 .expenses-input,
 .expenses-select {
-  padding: 8px;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: left; 
 }
 
 .expenses-button {

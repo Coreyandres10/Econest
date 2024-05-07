@@ -26,22 +26,29 @@
 .incomes-form {
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .incomes-form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .incomes-label {
   font-size: 22px;
+  margin-bottom: 5px; 
 }
 
 .incomes-input,
 .incomes-select {
-  padding: 8px;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: left; 
 }
 
 .incomes-button {

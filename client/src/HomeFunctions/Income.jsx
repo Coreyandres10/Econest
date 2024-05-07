@@ -169,7 +169,7 @@ const formatAmount = (amount) => {
               ))}
             </tbody>
           </table>
-          <p className="total-incomes">Total Incomes: ${formatAmount(totalIncome)}</p>
+          <p className="total-incomes">Total Income: ${formatAmount(totalIncome)}</p>
         </div>
       </div>
       
