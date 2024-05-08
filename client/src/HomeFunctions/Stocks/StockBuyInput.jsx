@@ -165,7 +165,7 @@ function StockBuyInput() {
     <div className="stocks-container">
       <div className="stock">
         <div className="stock-table">
-          <h3>Stocks</h3>
+          <h3 className="bold-text">Stocks</h3>
           <table>
             <thead>
               <tr>
@@ -202,13 +202,15 @@ function StockBuyInput() {
               ))}
             </tbody>
           </table>
-          <p className="total-stocks">Total Portfolio Value: ${totalPortfolio.toFixed(2)}</p>
+            <p>
+              <span className="total-stocks">Total Portfolio Value:</span> <span className="total-stock-value">${totalPortfolio.toFixed(2)} </span>
+            </p>
         </div>
       </div>
       <div className="stock-controls"> 
         <form onSubmit={handleSubmit} className="stocks-form"> 
           <div className="stocks-form-group"> 
-            <label htmlFor="stockSymbol" className="stocks-label">Stock Symbol:</label> 
+            <label htmlFor="stockSymbol" className="stocks-label">Stock Symbol</label> 
             <input
               type="text"
               id="stockSymbol"
@@ -219,7 +221,7 @@ function StockBuyInput() {
             />
           </div>
           <div className="stocks-form-group"> 
-            <label htmlFor="buyPrice" className="stocks-label">Buy Price:</label> 
+            <label htmlFor="buyPrice" className="stocks-label">Buy Price</label> 
             <input
               type="number"
               id="buyPrice"
@@ -230,7 +232,7 @@ function StockBuyInput() {
             />
           </div>
           <div className="stocks-form-group"> 
-            <label htmlFor="buyDate" className="stocks-label">Buy Date:</label> 
+            <label htmlFor="buyDate" className="stocks-label">Buy Date</label> 
             <input
               type="date"
               id="buyDate"
@@ -241,7 +243,7 @@ function StockBuyInput() {
             />
           </div>
           <div className="stocks-form-group"> 
-            <label htmlFor="shares" className="stocks-label">Shares:</label> 
+            <label htmlFor="shares" className="stocks-label">Shares</label> 
             <input
               type="text"
               id="shares"

@@ -145,7 +145,7 @@ const formatAmount = (amount) => {
     <div className="incomes-container">
       <div className="income">
         <div className="income-table">
-          <h3>Incomes</h3>
+          <h3 className="bold-text">Incomes</h3>
           <table>
             <thead>
               <tr>
@@ -169,14 +169,16 @@ const formatAmount = (amount) => {
               ))}
             </tbody>
           </table>
-          <p className="total-incomes">Total Income: ${formatAmount(totalIncome)}</p>
+          <p>
+            <span className="total-incomes">Total Income:</span> <span className="total-income-value">${formatAmount(totalIncome)}</span>
+          </p>
         </div>
       </div>
       
       <div className="income-controls">
         <form onSubmit={handleSubmit} className="incomes-form">
           <div className="incomes-form-group">
-            <label htmlFor="amount" className="incomes-label">Amount:</label>
+            <label htmlFor="amount" className="incomes-label">Amount</label>
             <input
               type="number"
               id="amount"
@@ -187,7 +189,7 @@ const formatAmount = (amount) => {
             />
           </div>
           <div className="incomes-form-group">
-            <label htmlFor="source" className="incomes-label">Source:</label>
+            <label htmlFor="source" className="incomes-label">Source</label>
             <input
               type="text"
               id="source"
@@ -198,7 +200,7 @@ const formatAmount = (amount) => {
             />
           </div>
           <div className="incomes-form-group">
-            <label htmlFor="category" className="incomes-label">Category:</label>
+            <label htmlFor="category" className="incomes-label">Category</label>
             <select
               id="category"
               value={category}

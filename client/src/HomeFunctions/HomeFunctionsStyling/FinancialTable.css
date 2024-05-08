@@ -1,0 +1,42 @@
+/* FinancialTable.css */
+
+.finance-table-container {
+    width: 100%;
+  }
+  
+  .finance-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .finance-table th,
+  .finance-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .finance-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .category {
+    font-weight: bold;
+  }
+  
+  .amount-value {
+    text-align: right;
+  }
+  
+  /* Optional: Add styling for the container and content if needed */
+  .finance-table-content {
+    overflow-x: auto;
+    margin-top: 20px;
+  }
+  
+  .category-header,
+  .amount-header {
+    font-weight: bold;
+    font-size: 22px; /* Adjust the font size as needed */
+  }
+  

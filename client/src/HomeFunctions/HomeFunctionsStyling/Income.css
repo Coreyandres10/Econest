@@ -26,7 +26,7 @@
 .incomes-form {
   display: flex;
   flex-direction: column;
-  margin-right: 100px;
+  margin-left: 100px;
 }
 
 .incomes-form-group {
@@ -55,7 +55,7 @@
   background-color: #007bff;
   color: #fff;
   border: none;
-  padding: 8px 20px;
+  padding: 8px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
@@ -81,5 +81,14 @@
 
 .total-incomes {
   font-size: 25px;
+  font-weight: bold;
   color: #000000;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.total-income-value {
+  font-size: 22px;
 }

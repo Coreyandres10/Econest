@@ -78,5 +78,14 @@
 
 .total-stocks {
   font-size: 25px;
+  font-weight: bold;
   color: #000000;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.total-stock-value {
+  font-size: 22px;
 }

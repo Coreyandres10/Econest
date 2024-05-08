@@ -42,9 +42,9 @@ function Stocks() {
   };
 
   return (
-    <div className="stocks-container">
+    <div className="stocks-container12">
       <form onSubmit={handleSubmit} className="stocks-form">
-        <label htmlFor="stockSymbol" className="stocks-label">Enter Stock Symbol:</label>
+        <label htmlFor="stockSymbol" className="stocks-label">Enter Stock Symbol</label>
         <input
           type="text"
           id="stockSymbol"

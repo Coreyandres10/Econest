@@ -1,4 +1,5 @@
 import React from 'react';
+import '/Users/emanuel/Econest/client/src/HomeFunctions/HomeFunctionsStyling/FinancialTable.css';
 
 // Functional component for displaying financial summary
 function FinanceTable({ expense, income }) {
@@ -19,22 +20,22 @@ function FinanceTable({ expense, income }) {
       <div className="finance-table-content">
         <table className="finance-table">
           <thead>
-            <tr>
-              <th>Category</th>
-              <th>Amount</th>
-            </tr>
+          <tr>
+            <th className="category-header">Category</th>
+            <th className="amount-header">Amount</th>
+          </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Income:</td>
+              <td className="category">Income</td>
               <td className="amount-value">$ {formatNumber(totalIncome)}</td>
             </tr>
             <tr>
-              <td>Expenses:</td>
+              <td className="category">Expenses</td>
               <td className="amount-value">$ {formatNumber(totalExpense)}</td>
             </tr>
             <tr>
-              <td>Net Income:</td>
+              <td className="category">Net Income</td>
               <td className="amount-value">$ {formatNumber(netIncome)}</td>
             </tr>
           </tbody>
