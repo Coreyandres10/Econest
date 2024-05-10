@@ -4,8 +4,8 @@
 
 .stocks-container12 {
   display: flex;
-
-  margin-left: 760px;
+  margin-left: 60px;
+  margin-top: 50px;
 }
 
 .stocks-form {
@@ -47,8 +47,8 @@
   padding: 0;
 }
 
-.stocks-news-item {
-  margin-bottom: 20px; 
+.stocks-news-item { 
+  margin-top: 20px; /* Add space between form and news section */
 }
 
 .stocks-news-link {
